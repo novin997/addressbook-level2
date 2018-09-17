@@ -1,5 +1,6 @@
 package seedu.addressbook.common;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -7,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.util.TestUtil;
 
 public class UtilsTest {
 
@@ -42,5 +45,15 @@ public class UtilsTest {
 
     private void assertNotUnique(Object... objects) {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
+    }
+
+    @Test
+    public void NoObjectsPresent_ObjectsPresent() {
+        List<ReadOnlyPerson> person = TestUtil.createList(TestUtil.generateTestPerson());
+
+        assertEquals(Utils.isAnyNull((Object)null),true);
+        assertEquals(Utils.isAnyNull(null,person),true);
+        assertEquals(Utils.isAnyNull(1,2,3),false);
+        assertEquals(Utils.isAnyNull(person),false);
     }
 }
